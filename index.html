@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Investigación de Operaciones - Universidad Distrital</title>
+    <!-- Enlaces a las bibliotecas de Bootstrap 5 y jQuery -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="./lib/datatables/datatables.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./lib/math/math.min.js"></script>
+    <script src="./lib/jquery/jquery.min.js"></script>
+    <script src="./lib/datatables/datatables.min.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./lib/popper/popper.min.js"></script>
+    <script src="./lib/particles/particles.js"></script>
+    <script src="./lib/sweet-alert/sweet-alert.min.js"></script>
+    
+    <script src="./js/logic.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/grapher.js"></script>
+    <style>
+      .align-left {
+        text-align: left;
+      }
+      .form-label {
+        margin-bottom: 0.5rem;
+      }
+      .form-control,
+      .form-select {
+        max-width: 200px;
+      }
+      .row-container {
+        display: flex;
+        flex-wrap: nowrap;
+      }
+      .method-container, .target-container {
+        flex: 1;
+        margin: 0 10px;
+      }
+      
+    </style>
+  </head>
+  <body>
+
+    <header class="header">
+      <div class="container container-lg">
+        <div class="row row-top">
+          <nav class="navbar navbar-expand-lg ">
+            <!--<a class="nav-link active" href="#">  
+              <img src="images\Logo-U-distrital-removebg-preview.png" alt="logo" class="logo-main">
+            </a>
+            <div class="container-fluid">
+              <a class="nav-link active" href="#">
+               <font color="#FFFFF"><h1>Programa Investigación de Operaciones</h1></font>
+               <font color="#FFFFF"><h2>Universidad Distrital Francisco José de Caldas</h2></font>
+               <font color="#FFFFF"><h3>Tecnología en Sistematización de Datos</h3></font>
+             </a>
+             
+            </div>-->
+          </nav>
+        </div>
+      </div>
+    </header>
+    
+      
+  </nav>
+</div>
+
+    
+    <div class="container">
+      <div class="row-container">
+        <form id="method-form" class="method-container">
+          <div>
+            <div class="mb-3 row">
+              <label for="metodo" class="col-form-label align-left"><strong>Elije el Método que desea utilizar </strong></label>
+
+              <div class="col-auto">
+                <select class="form-select" id="method-select" name="method" required>
+                  <option value="0" selected>Dos Fases</option>
+                  <option value="1">Metodo Grafico</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="inputbox" style="margin-top: 50px;">
+              <input type="number" id="variables" name="variables" required>
+              <span>Número de Variables de Decisión:</span>
+              <i></i>
+            </div>
+            
+            <div class="inputbox" style="margin-top: 50px;">
+              <input type="number" id="restrictions" name="restrictions" required>
+              <span>Número de Restricciones:</span>
+              <i></i>
+            </div>
+
+
+            <div class="mb-3 row" style="margin-top: 50px;">
+              <button type="button" class="btn" onclick="checkForm()">
+                <span class="btn-txt">Ir al calculo</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <form id="target-form" class="target-container" style="display: none">
+          <div class="p-0 parameters-container">
+            <div class="mb-3 row">
+             
+              <div class="col-auto text-center">
+                <select class="form-select" id="natureSystem" >
+                  <option value="0">Minimizar</option>
+                  <option value="1">Maximizar</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row pt-2">
+              <div>
+                <div id="target-variables" class="mb-3 row elastic-row elastic-group-row flex-nowrap">
+                  <div class="col-auto">
+                    <label for="funcion" class="col-form-label align-left">Función:</label>
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <div class="col-auto py-0 px-2">
+                    <label for="funcion" class="col-form-label align-left" style="font-size: 16px">Restricciones:</label>
+                  </div>
+                </div>
+                <div id="target-restrictions" class="elastic-group-row"></div>
+                <div class="mb-3 row">
+                  <div class="col-auto py-0 px-2">
+                    <label id="variable-label" for="funcion" class="col-form-label align-left"></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <button id="calculateButton" type="button" class="btn" onclick="calculate()">
+                <span class="btn-txt">Calcular</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="canvas-container" class="container" style="display: none">
+      <div id="canvas-row-container" class="row justify-content-center">
+        <canvas id="graphCanvas" style="width: 700px; height: 500px"></canvas>
+      </div>
+      <div id="graph-label" class="row justify-content-center"></div>
+    </div>
+
+    <div id="iterations-container" class="container" style="display: none"></div>
+    <footer class="footer">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-5">
+                  <h4>Realizado por :</h4>
+                  <ul>
+                    <li><strong>Juan Pablo Camelo Andrade - cod:20172578069</strong></li>
+                    <li><strong>Edison Abraham Solorzano  - cod:20211578067</strong></li>
+                </ul>
+              </div>
+          </div>
+          
+      </div>
+  </footer>
+    
+  </body>
+</html>
+

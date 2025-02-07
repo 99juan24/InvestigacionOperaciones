@@ -1,0 +1,210 @@
+/* Variables globales */
+:root {
+  --primary-color: #1565C0;
+  --secondary-color: #2196F3;
+  --light-blue: #BBDEFB;
+  --white: #FFFFFF;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos base */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1A237E 0%, #0D47A1 50%, #01579B 100%);
+}
+
+/* Layout containers */
+.container {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/fondo1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  max-width: 100% !important;
+  margin: 0 !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Animación de fondo */
+.container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  animation: rotate 15s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Header y navegación */
+.header {
+  width: 100%;
+  animation: slideDown 0.5s ease-out;
+}
+
+.navbar {
+  background-color: rgba(21, 101, 192, 0.95);
+  padding: 10px 20px;
+  width: 100%;
+}
+
+#miNav {
+  background-color: rgba(187, 222, 251, 0.9);
+  padding: 20px;
+  margin: 0;
+  width: 100%;
+}
+
+/* Contenedores de formularios */
+.row-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.method-container, 
+.target-container {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  margin: 0;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.method-container:hover, 
+.target-container:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Botones */
+.btn {
+  height: 50px;
+  width: 200px;
+  background: linear-gradient(45deg, var(--secondary-color), #64B5F6);
+  border: none;
+  border-radius: 30px;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Tablas */
+.datatable {
+  border-collapse: separate !important;
+  border-spacing: 0 8px !important;
+  background: transparent !important;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.datatable td, 
+.datatable th {
+  padding: 12px 15px !important;
+  border: none !important;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
+
+.datatable th {
+  background: var(--primary-color) !important;
+  color: var(--white) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+/* Estilos de celdas */
+.cell-style-1 { background-color: #bbdefb !important; font-weight: bold; animation: highlight 1s ease-in-out; }
+.cell-style-2 { background-color: #e3f2fd !important; }
+.cell-style-3 { background-color: #90caf9 !important; }
+.cell-style-4 { background-color: #64b5f6 !important; }
+.cell-style-5 { background-color: #42a5f5 !important; }
+.cell-style-6 { background-color: #2196f3 !important; }
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 50%; }
+}
+
+@keyframes highlight {
+  0% { background-color: #bbdefb; }
+  50% { background-color: #64b5f6; }
+  100% { background-color: #bbdefb; }
+}
+
+/* Utilidades */
+.logo-main {
+  width: 200px;
+  height: auto;
+}
+
+.footer {
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Phase title */
+.phase-title h1 {
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  animation: fadeIn 0.5s ease-out;
+}
+#graph-label .variables-label {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.table-responsive {
+  margin-top: 20px;
+}
+
+.table th {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.table td, .table th {
+  padding: 10px;
+  text-align: center;
+}
